@@ -1,0 +1,1538 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        .mytext {
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #fff url('mypreloader.gif') no-repeat center;
+            z-index: 99999;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: cursive;
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 85%;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+
+
+        /* The dots/bullets/indicators */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            margin-top: 3%;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /*
+ On smaller screens, decrease text size 
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+*/
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: black;
+            border-radius: 50px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgb(148, 120, 120);
+        }
+
+        .btnabout:hover {
+            letter-spacing: 6px;
+        }
+
+        .btnportfolio:hover {
+            letter-spacing: 6px;
+        }
+
+        .btnsend:hover {
+            letter-spacing: 6px;
+        }
+
+        header {
+            position: fixed;
+            top: -10;
+            left: 0;
+            width: 100%;
+            padding: 30px 130px;
+            z-index: 10000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.5s;
+
+        }
+
+        header .navigation {
+            position: relative;
+            display: flex;
+
+        }
+
+        .usericon :hover {
+            color: burlywood;
+            background: black;
+        }
+
+        header .navigation:hover {
+            color: orange;
+        }
+
+        header .navigation li {
+            list-style: none;
+            margin-left: 30px;
+        }
+
+        header .navigation li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1em;
+            font-family: cursive;
+
+        }
+
+        header .navigation li a:hover {
+            color: red;
+        }
+
+        body {
+            min-height: 1000px;
+            position: relative;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            min-width: 480px;
+            overflow-x: hidden;
+
+        }
+
+        header.sticky {
+            background: #fff;
+            padding: 10px 100px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0, 0.5)
+        }
+
+        header.sticky .navigation li a {
+            color: #111;
+        }
+
+        header.sticky .navigation li a:hover {
+            color: red;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .menuM {
+            color: orange;
+            font-size: 50;
+        }
+
+        .aboutA {
+            color: cadetblue;
+            font-size: 50;
+        }
+
+        .galleryG {
+            color: orange;
+            font-size: 50;
+        }
+
+        .contactC {
+            color: rgb(231, 105, 105);
+            font-size: 50;
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+
+        /*
+         @media only screen and (max-width: 768px) {
+   For mobile phones: 
+  [class*="col-"] {
+    width: 100%;
+  }
+*/
+        /*
+         @media only screen and (min-width: 600px) {
+   For tablets: 
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+         
+*/
+        /*
+          For desktop: 
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+*/
+        @media (min-width: 10px) and (max-width: 480px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            header,
+            header.sticky {
+                padding: 10px 50px;
+            }
+
+            header .navigation {
+                display: none;
+
+            }
+
+            .menuToggle {
+                position: relative;
+                width: 30px;
+                height: 30px;
+                background: url(menuicon.png);
+                background-size: 20px;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menuToggle.active {
+                background: url(close.png);
+                background-size: 15px;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            header .navigation.active {
+                width: 100%;
+                height: calc(100% - 100px);
+                position: fixed;
+                left: 0;
+                top: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background: #fff;
+
+            }
+
+            header .navigation li {
+                margin-left: 0;
+            }
+
+            header .navigation li a {
+                text-decoration: none;
+                color: #111;
+                font-size: 1.6em;
+                font-weight: 300;
+
+            }
+
+            .logoimg {
+                width: 30px;
+                height: auto;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+            }
+            .divmap
+            {
+                align-items: center;
+            }
+            .map {
+                width: 100px;
+                max-height: 150px;
+            }
+            .textarea{
+                width: 200px;
+            }
+            .slideshow-container {
+                height: 500px;
+            }
+
+
+        }
+
+        @media (min-width: 481px) and (max-width: 767px) {
+            * {
+                overflow-x: hidden;
+                max-width: 100%;
+            }
+
+            header,
+            header.sticky {
+                padding: 10px 50px;
+                width: 100%;
+            }
+
+            header .navigation {
+                display: none;
+
+            }
+
+            .menuToggle {
+                position: relative;
+                width: 40px;
+                height: 40px;
+                background: url(menuicon.png);
+                background-size: 30px;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menuToggle.active {
+                background: url(close.png);
+                background-size: 25px;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .slideshow-container {
+                height: 35%;
+                display: inline-block;
+            }
+
+            .main {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .heading {
+                text-align: center;
+            }
+
+            .dot {
+                height: 7px;
+                width: 7px;
+                margin: 0 1px;
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+                margin-top: 5%;
+            }
+
+            .active {
+                background-color: #717171;
+            }
+
+
+
+            /* Fading animation */
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            @-webkit-keyframes fade {
+                from {
+                    opacity: .4
+                }
+
+                to {
+                    opacity: 1
+                }
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: .4
+                }
+
+                to {
+                    opacity: 1
+                }
+            }
+            .sociallinks{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1em;
+                background-size: 40px;
+            }
+            .container1{
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 95%;
+            padding: 20px;
+        }
+        .container1 .card 
+        {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            margin: 20px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+
+
+        }
+
+        .container1 .card .imgbox {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            transition: 0.5s ease-in-out;
+        }
+
+        .container1 .card .imgbox img {
+            max-width: 100%;
+            height: 200px;
+            margin: 0 0 20px;
+            transition: 0.5s ease-in-out;
+        }
+
+        .container1 .card:hover .imgbox {
+            transform: translateY(-100px);
+        }
+
+        .container1 .card:hover .imgbox img {
+            transform: translate(-20px, -40px) rotate(-25deg) scale(1.01);
+        }
+
+            .row1 {
+                padding: 30px;
+            }
+
+            .row2 {
+                padding: 30px;
+            }
+
+            .row3 {
+                padding: 30px;
+            }
+
+            .menucols {
+                padding-bottom: 10px;
+            }
+
+
+            .pixgallery {
+                margin-right: 0.8rem;
+            }
+
+            header .navigation.active {
+                width: 100%;
+                height: calc(100% - 100px);
+                position: fixed;
+                left: 0;
+                top: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background: #fff;
+
+            }
+
+            .divmap {
+                margin-left: 0%;
+                position: relative;
+                width: 40%;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .map {
+                width: 100px;
+                max-height: 200px;
+                float: right;
+            }
+
+            .textmap {
+                display: flex;
+                align-items: center;
+            }
+
+            .textarea {
+                width: 45%;
+            }
+
+            header .navigation li {
+                margin-left: 0;
+            }
+
+            header .navigation li a {
+                text-decoration: none;
+                color: #111;
+                font-size: 1.6em;
+                font-weight: 300;
+
+            }
+
+            .slideshow-container {
+                max-width: 85%;
+                position: relative;
+            }
+
+            .main {
+                margin-top: -60%;
+            }
+
+            .navbar-brand img {
+                max-width: 100%;
+                height: 100px;
+                align-items: center;
+            }
+
+
+        }
+
+        [placeholder]:focus::-webkit-input-placeholder {
+            transition: text-indent 1s 0.2s ease;
+            text-indent: -100%;
+            opacity: 1;
+        }
+        .container1{
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 95%;
+            padding: 20px;
+        }
+        .container1 .card 
+        {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            margin: 20px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+
+
+        }
+
+        .container1 .card .imgbox {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            transition: 0.5s ease-in-out;
+        }
+
+        .container1 .card .imgbox img {
+            max-width: 100%;
+            height: 300px;
+            margin: 0 0 20px;
+            transition: 0.5s ease-in-out;
+        }
+
+        .container1 .card:hover .imgbox {
+            transform: translateY(-100px);
+        }
+
+        .container1 .card:hover .imgbox img {
+            transform: translate(-20px, -40px) rotate(-25deg) scale(1.01);
+        }
+
+        .btn1,
+        .btn2,
+        .btn3,
+        .btn4,
+        .btn5,
+        .btn6,
+        .btn7,
+        .btn8,
+        .btn9 {
+            color: white;
+            background-color: black;
+            padding: 8px 16px;
+            font-family: cursive;
+            font-size: 18px;
+            transition: .5s ease-in-out;
+            border-radius: 7px;
+        }
+
+        .btn1:hover,
+        .btn2:hover,
+        .btn3:hover,
+        .btn4:hover,
+        .btn5:hover,
+        .btn6:hover,
+        .btn7:hover,
+        .btn8:hover,
+        .btn9:hover {
+            background-color: white;
+            color: black;
+            padding: 8px 16px;
+            font-family: cursive;
+            font-size: 18px;
+            transition: .5s ease-in-out;
+            border-radius: 7px;
+        }
+
+        .heading {
+            color: white;
+            font-family: cursive;
+            font-size: 30px;
+        }
+
+        .logoimg {
+            width: 45%;
+        }
+
+        .formplaceholders {
+            color: white;
+        }
+
+        ::placeholder {
+            color: lightgray;
+            opacity: 1;
+        }
+       .container2
+       {
+        position: relative;
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 30px;
+            align-items: center;
+            width: 95%;
+       }
+       .container2 .card1
+       {
+        position: relative;
+            width: 370px;
+            height: 350px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+       }
+       .container2 .card1 .imgbox1
+       {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+            transition: 0.5s ease-in-out;
+            padding: 20px;
+       }
+       .container2 .card1 .imgbox1 img
+       {
+        max-width: 100%;
+            height: 300px;
+            margin: 0 0 20px;
+            transition: 0.5s ease-in-out;
+       }
+
+       .container2 .imgbox1 img :hover
+       {
+           transform: scale(1.5);
+       }
+    </style>
+
+</head>
+
+<body>
+    <script src="htps://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+    <script>
+        setTimeout(function () {
+            $('.loader_bg').fadeToggle();
+        }, 2500)
+    </script>
+    <div class="loader_bg">
+        <div class="loader">
+
+        </div>
+    </div>
+
+
+    <section style="background-color: burlywood" class="home" id="home">
+        <header>
+            <a class="navbar-brand" href="#home">
+                <img src="logo.png" class="logoimg" alt="logo">
+            </a>
+            <div class="menuToggle" onclick="toggleMenu();"></div>
+            <ul class="navigation">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+        </header><br><br><br><br><br><br>
+
+        <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                <img src="slider9.jpg" style="width:100%; height: 40%;">
+
+            </div>
+
+            <div class="mySlides fade">
+                <img src="slider5.jpg" style="width:100%; height: 40%;">
+
+            </div>
+
+            <div class="mySlides fade">
+                <img src="garlicBread.jpg" style="width:100%; height: 40%;">
+
+            </div>
+            <div class="mySlides fade">
+                <img src="slider10.jpg" style="width:100%; height: 40%;">
+
+            </div>
+
+            <div class="mySlides fade">
+                <img src="pizza-sandwich.jpg" style="width:100%; height: 40%;">
+
+            </div>
+
+            <div class="mySlides fade">
+                <img src="pizza-sandwich2.jpg" style="width:100%; height: 40%;">
+
+            </div>
+            <div class="mySlides fade">
+                <img src="desserts.jpg" style="width:100%; height: 40%;">
+
+            </div>
+
+            <div class="mySlides fade">
+                <img src="desserts2.jpg" style="width:100%; height:  40%;">
+
+            </div>
+
+            <div class="mySlides fade">
+                <img src="drink1.jpeg" style="width:100%; height: 40%;">
+
+            </div>
+            <div class="mySlides fade">
+                <img src="drink2.jpg" style="width:100%; height: 40%;">
+
+            </div>
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+        </div>
+        <br>
+
+
+
+        <script>
+            var slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                setTimeout(showSlides, 2000); // Change image every 2 seconds
+            }
+        </script>
+
+        <script type="text/javascript">
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+                header.classList.toggle("sticky", window.scrollY > 0);
+            })
+
+            function toggleMenu() {
+                const menuToggle = document.querySelector('.menuToggle');
+                const navigation = document.querySelector('.navigation');
+                menuToggle.classList.toggle('active');
+                navigation.classList.toggle('active');
+
+            }
+        </script>
+        <script type="text/javascript">
+            function send() {
+                var name = document.getElementById('name').innerHTML;
+                var email = document.getElementById('email').innerHTML;
+                var print = document.getElementById('btnsend').innerHTML;
+                var msg;
+                if (name == 0 || name == null || email == 0 || email == null) {
+                    msg = alert("Feilds with * are mandatory");
+                } else {
+                    msg = alert("Thank you for your Order, We'll get back to you soon..");
+                }
+
+
+
+            }
+
+
+        </script>
+        <br>
+
+        <div class="container mb-3 text-center main" style="background-color: #101010; width: 95%;">
+
+            <div class="row">
+
+
+
+
+                <div class="col-md-4 pt-3" style="background-color: black; width: 100%;">
+                    <h3 class="text-center" style="color: white; background-color: #2e3135"><i
+                            class="fa fa-user usericon" aria-hidden="true"></i> About Us</h3>
+                    <a href="#about"> <img src="homeaboutpic1.jpg" class="mt-2 imgabout  rounded-circle" alt="Cinque Terre"
+                            height="160px" width="70%" /> </a>
+
+
+
+
+
+                    <h3 style="color: white">All About Our Site</h3>
+
+                    <small style="color: grey">Seed saying our signs beginning face give spirit own beast darkness
+                        morning.</small><br><br>
+                    <a href="#about"><button style="transition: 0.5s;text-transform: uppercase; text-decoration: none;"
+                            class="mb-4 btnabout btn-dark">Learn More</button></a>
+
+                </div>
+                <div class="col-md-4 pt-3" style="background-color: black; width: 100%;">
+                    <h3 class="text-center pb-1" style="color: white; background-color: #2e3135"><i class="fa fa-tags"
+                            aria-hidden="true"></i> Our Gallery</h3>
+                    <a href="#gallery"> <img src="food2.jpg" class="mt-2 imgportfolio rounded-circle" alt=""
+                            height="160px" width="70%" /> </a>
+                    <h3 style="color: aliceblue">Items in Our Site</h3>
+
+                    <small style="color: grey">Created god gathered don't you yielding herb And isn't, god was saw.
+                        Dominion..</small><br><br>
+                    <a href="#gallery"><button
+                            style="transition: 0.5s;text-transform: uppercase; text-decoration: none;"
+                            class="mb-4 btnportfolio btn-dark">Learn More</button></a>
+
+                </div><br>
+
+                <div class="col-md-4 pt-3" style="background-color: black; width: 100%;">
+                    <h3 class="text-center pb-1" style="color: white; background-color: #2e3135"><i
+                            class="fas fa-phone-volume" aria-hidden="true"></i> Get in Touch </h3>
+                        <div class="hometext" style="display: flex; margin-top: 40px; flex-direction: column; text-align: center; justify-content: center; color: whitesmoke; font-size: 1.6vw">
+                            <p class=" mytext"><i
+                                class="fas fa-mobile-alt" aria-hidden="true"></i> Phone: +92-3200485506</p>
+                        <p class="text-center mytext"><i class="far fa-envelope"
+                                aria-hidden="true"></i> Email: abc@gmail.com </p>
+                        <p class="text-center mytext" ><i class="fas fa-home"
+                                aria-hidden="true"></i> Address: Badami Bagh Lahore</p>
+                        <p class="text-center mytext"><i
+                                class="fas fa-thumbs-up" aria-hidden="true"></i> Facebook: xyz@outlook.com</p>
+
+                        </div>
+                    
+                            <div style="box-sizing: border-box; letter-spacing: 25px; justify-content: right;">
+                                <h3 style="display: flex; flex-direction: row; justify-content: center; ">
+                                    <a href="https://mail.google.com/mail/u/0/#inbox/15eae9fcb224222e"><i class="fa fa-envelope"
+                                            style="color: red; height: 30px; width: 100% ; "
+                                            aria-hidden="true"></i></a>
+        
+                                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"
+                                            style="color: #4267B2; height: 30px; width: 100% ;" aria-hidden="true"></i></a>
+        
+                                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"
+                                            style="color: red; height: 50px; width: 100%;"
+                                            aria-hidden="true"></i></a>
+        
+        
+                                    <a href="https://twitter.com/"><i class="fab fa-twitter-square"
+                                            style="color: deepskyblue; height: 30px; width: 100x;"
+                                            aria-hidden="true"></i></a>
+        
+                                    <a href="https://twitter.com/"><i class="fab fa-whatsapp-square"
+                                            style="color: green; height: 30px; width: 100%;"
+                                            aria-hidden="true"></i></a>
+                                </h3>
+
+                            </div>
+                          
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="menu" id="menu" style="background: #354257;">
+        <div class="container mb-3 mt-2" width="100%">
+            <div class="row" style="color: white;">
+                <div style="padding-top: 10em;" class="col-md-12">
+
+                    <h3 style="color: white; font-family: cursive"><i class="fa fa-bars" aria-hidden="true"></i> Our
+                        <span class="menuM">M</span>enu
+                    </h3>
+
+                </div>
+                <div style="border: 1px solid grey; margin-top: 25px; width: 100%;"></div>
+
+            </div>
+    </div>
+   <center> <div class="container1">
+    <div class="menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="food1.jpg"/>
+                <h4 class="heading">Only $7.55</h4>
+
+                <a href="#contact"> <input type="submit" class="btn1" value="Order Now" /> </a>
+            </div>
+        </div>
+    </div>
+
+    <div class=" menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="food2.jpg" />
+                <h4 class="heading">Only $9.70</h4>
+                <a href="#contact"> <input type="submit" class="btn2" value="Order Now" /> </a>
+            </div>
+        </div>
+    </div>
+    <div class="menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="food3.jpg" />
+                <h4 class="heading">Only $12.50</h4>
+                <a href="#contact"> <input type="submit" class="btn3" value="Order Now" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div class=" menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="pizza-sandwich.jpg" />
+                <h4 class="heading">Only $7.19</h4>
+                <a href="#contact"> <input type="submit" class="btn4" value="Order Now" /> </a>
+            </div>
+        </div>
+    </div>
+
+    <div class=" menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="pizza-sandwich2.jpg" />
+                <h4 class="heading">Only $9.23</h4>
+                <a href="#contact"> <input type="submit" class="btn5" value="Order Now" /> </a>
+            </div>
+        </div>
+    </div>
+    <div class="menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="desserts.jpg" />
+                <h4 class="heading">Only $14.65</h4>
+                <a href="#contact"> <input type="submit" class="btn6" value="Order Now" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div class=" menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="update2.jpg" />
+                <h4 class="heading">Only $6.55</h4>
+                <a href="#contact"> <input type="submit" class="btn7" value="Order Now" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div class=" menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="drink1.jpeg" />
+
+                <h4 class="heading">Only $25.74</h4>
+                <a href="#contact"> <input type="submit" class="btn8" value="Order Now" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="menucols">
+        <div class="card">
+            <div class="imgbox">
+                <img src="drink2.jpg" />
+                <h4 class="heading">Only $19.41</h4>
+                <a href="#contact"> <input type="submit" class="btn9" value="Order Now" /> </a>
+            </div>
+        </div>
+    </div>
+</div></center>
+            
+    </section>
+
+    <section id="about" class="mb-3" style="background-color: #824b3e">
+        <div class="container">
+            <div class="row" style="padding-top: 10em">
+                <div class="col-md-8">
+                    <h3 style="color: black;  font-family: cursive; background-color: white"><i class="fa fa-users"
+                            aria-hidden="true"></i> <span class="aboutA">A</span>bout Us</h3>
+
+                    <img src="aboutnew.jpg" height="300px" width="100%" />
+                    <div>
+                        <br> <small style="position: relative; color: white">
+                            <p>Pizzas are shipped Monday through Friday using FedEx. Because we want you to receive your
+                                pizza frozen, We cannot have packages in transit over the weekend, so we are not able to
+                                delivery your package on a Sunday, Monday, or on a FedEx Holiday.</p>
+
+                            <h5 style="position: relative; color: white"> HOW DO WE DO IT?</h5>
+
+                            <p style="position: relative; color: white"> We pack your pizza in a cooler within a
+                                shipping box with enough dry ice to keep the contents frozen well into the evening of
+                                the delivery date. It is best to open the package immediately upon arrival and to put
+                                your pizza in the freezer. Use gloves when handling dry ice. Fun Fact: the temperature
+                                inside that box is about negative 110 degrees F which is colder than your freezer by 100
+                                degrees.</p>
+
+
+
+                            <h5 style="position: relative; color: white"> IN A RUSH? UPGRADE! </h5>
+                            <p style="position: relative; color: white">
+                                All expedited orders received by Noon CST Monday through Friday will be processed same
+                                day. Overnight orders for Saturday delivery must be received by noon or they will be
+                                shipped the following Monday. 2 day express orders received on Thursday or Friday will
+                                be shipped the following Monday. Any order received after noon CST may not be shipped
+                                same day. We encourage you to read our shipping policies or call us if you have
+                                questions. </p><!-- Look wise yha tk or nechy wala paragraph b ....        -->
+                            <h5 style="position: relative; color: white"> OUR GUARANTEE </h5>
+                            <p style="position: relative; color: white">
+                                To guarantee delivery we must have the complete and correct address. We are not able to
+                                deliver to PO Boxes, A.P.O or F.P.O addresses due the highly perishable nature of frozen
+                                pizza. </p>
+
+                            <h5 style="position: relative; color: white"> RECEIPTS </h5>
+                            <p style="position: relative; color: white">
+                                All orders include a packing slip with no pricing information. We are unable to ship
+                                outside of the United States but an order may be placed internationally for delivery
+                                within the US by using PayPal. </p>
+
+                            <h5 style="position: relative; color: white"> CUSTOMER SERVICE </h5>
+                            <p style="position: relative; color: white">
+                                We are here to help you. Please chat with our customer service team during business
+                                hours of 9:00 AM until 4:00 PM (CST) and if we are not online please send us an email
+                                and we will respond as quickly as possible. We are unable to ship outside of the United
+                                States but an order may be placed internationally for delivery within the US by using
+                                PayPal. </p>
+
+                        </small>
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 style="color: white; background-color: dimgrey;"> <i class="far fa-smile ml-2"
+                            aria-hidden="true"></i> Welcome Guest</h3>
+                    <div style="background-color: aliceblue">
+                        <center> <img src="welcome-bg.png" height="200px" width="90%" /></center><br>
+                        <center> <small>
+                                <p>All orders include a packing slip with no pricing information. We are unable to ship
+                                    outside of the United States but an order may be placed internationally for delivery
+                                    within the US by using PayPal.</p>
+                            </small></center>
+                        <h3 style="color: white; background-color: dimgrey;"><i class="fa fa-list-ol ml-2"
+                                aria-hidden="true"></i> Site Navigation</h3>
+                        <a href="#home">
+                            <h3 class="mb-3" style="background-color: #dee9f9;color: black; margin-left: 3%;">Home</h3>
+                        </a>
+                        <a href="#about">
+                            <h3 class="mb-3" style="background-color: #dee9f9;color: black; margin-left: 3%;">About Us
+                            </h3>
+                        </a>
+                        <a href="#gallery">
+                            <h3 class="mb-3" style="background-color: #dee9f9;color: black; margin-left: 3%;">Portfolio
+                            </h3>
+                        </a>
+                        <a href="#contact">
+                            <h3 class="mb-3" style="background-color: #dee9f9;color: black; margin-left: 3%;">Contact
+                            </h3>
+                        </a>
+
+                        <i class=""></i>
+                        <h3 style="color: white; background-color: dimgrey;"><i class="fas fa-snowflake ml-2"
+                                aria-hidden="true"></i> Categories</h3>
+                        <a href="#gallery">
+                            <h5 style="color: black; margin-left: 3%;"> Web Portfolios </h5>
+                        </a>
+                        <a href="#home">
+                            <h5 style="color: black; margin-left: 3%;"> Trends and Technology</h5>
+                        </a>
+                        <a href="#about">
+                            <h5 style="color: black; margin-left: 3%;"> Design Freelancers</h5>
+                        </a>
+                        <a href="#about">
+                            <h5 style="color: black; margin-left: 3%;"> Design Companies</h5>
+                        </a>
+                        <a href="#home">
+                            <h5 style="color: black; margin-left: 3%;"> Web Developement</h5>
+                        </a>
+
+                        <h3 class="mt-3 " style="color: white; background-color: dimgrey;"><i
+                                class="fas fa-signal "></i> Network Connect</h3>
+                        <h3 style="display: flex; flex-direction: row; justify-content: center; ">
+                            <a href="https://mail.google.com/mail/u/0/#inbox/15eae9fcb224222e"><i class="fa fa-envelope"
+                                    style="color: red; height: 30px; width: 100% ; margin-right: 20px; "
+                                    aria-hidden="true"></i></a>
+
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"
+                                    style="color: blue; height: 30px; width: 100% ;" aria-hidden="true"></i></a>
+
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"
+                                    style="color: red; height: 50px; width: 100%; margin-left: 20px;"
+                                    aria-hidden="true"></i></a>
+
+
+                            <a href="https://twitter.com/"><i class="fab fa-twitter-square"
+                                    style="color: deepskyblue; height: 30px; width: 100%; margin-left: 20px;"
+                                    aria-hidden="true"></i></a>
+
+                            <a href="https://twitter.com/"><i class="fab fa-whatsapp-square"
+                                    style="color: green; height: 30px; width: 100%; margin-left: 20px;"
+                                    aria-hidden="true"></i></a>
+                        </h3>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+    </section>
+
+    <section id="gallery" style="background-color: #122e19">
+        <div class="container">
+            <div class="row" style="color: black; padding-top: 10em">
+                <div class="col-md-12">
+                    <h3 style="color: white;  font-family: cursive"><i class="fa fa-calendar" aria-hidden="true"></i>
+                        Our <span class="galleryG">G</span>allery</h3>
+
+                </div>
+                </div>
+
+                <div class="mb-2" style="border: 1px solid grey; width: 100%;"></div>
+            </div>
+
+            
+                 <center>  <div class="container2">
+                     <div class="card1">
+                        <div class="imgbox1">
+                            <img src="desserts.jpg" />
+                   </div>
+                     </div>
+                       <div class="card1">
+                        <div class="imgbox1">
+                            <img src="food4.jpg" />
+                           </div>
+                       </div>
+                   <div class="card1">
+                    <div class="imgbox1">
+                        <img src="drink1.jpeg" /> 
+                    </div>
+                   </div>
+                           <div class="card1">
+                            <div class="imgbox1">
+                                <img src="drink2.jpg"  />
+                              </div>   
+                           </div>
+                                     <div class="card1">
+                                        <div class="imgbox1">
+                                            <img src="garlicBread.jpg" />
+                                           </div>
+                                     </div>
+               <div class="card1">
+                <div class="imgbox1">
+                    <img src="drink1.jpeg" />
+                  </div>
+               </div>
+               <div class="card1">
+                <div class="imgbox1">
+                    <img src="garlicBread2.jpg" />
+                </div>
+               </div>
+                        
+                      <div class="card1">
+                        <div class="imgbox1">
+                            <img src="food1.jpg"/>
+                         </div>
+                      </div>     
+                     <div class="card1">
+                        <div class="imgbox1">
+                            <img src="food2.jpg"/>
+                        </div>
+                     </div>
+                   <div class="card1">
+                    <div class="imgbox1">
+                        <img src="food3.jpg"/>
+                    </div>
+                   </div>
+                        
+                        
+    
+                    </div> </center>
+                   
+    </section>
+
+    <section id="contact" style="background-color: #334c54">
+        <div class="container" style="color: white;">
+            <div class="row" style="padding-top: 10em">
+                <div class="col-md-8 mb-2">
+                    <div style="border-bottom: 1px solid grey"> <i class=""></i>
+                        <h3 style="color: white; font-family: cursive"> <i class="fas fa-mobile-alt"></i> <span
+                                class="contactC">C</span>ontact Us</h3>
+                    </div>
+
+                    <br> <small class="mt-4">Created god gathered don't you yielding herb you had. And isn't, god was
+                        saw. Dominion. Great sixth for in unto was. Open can't tree am waters brought. Divide after
+                        there. Was.
+
+                        Created god gathered don't you yielding herb you had. And isn't, god was saw. Dominion. Great
+                        sixth for in unto was. Open can't tree waters brought. Divide after there. Was. Created god
+                        gathered don't you yielding herb you had. And isn't god.</small><br><br>
+                    <form>
+
+                        <input id="name" class="formplaceholders mb-4" placeholder="Enter your Name" required
+                            style="width: 45%; border:none; border-bottom: 1px solid #1890ff; padding: 5px 10px; outline: none; background: none;"><br>
+
+                        <input id="email" class="formplaceholders mb-4" placeholder="Enter your Email" required
+                            style="width: 45%; border:none; border-bottom: 1px solid #1890ff; padding: 5px 10px; outline: none; background: none"><br>
+
+                        <input class="formplaceholders mb-4" required placeholder="Enter your City"
+                            style="width: 45%; border:none; border-bottom: 1px solid #1890ff; padding: 5px 10px; outline: none; background: none">
+
+                        <div class="divmap" style="margin-top: -27%; float: right; margin-right: 11%">
+
+                            <h5 class="text-center textmap"
+                                style="margin-left: 50%; margin-top: 22%; font-family: cursive">Our Location:</h5>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d435521.40792399936!2d74.05420013381662!3d31.48263523074282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190483e58107d9%3A0xc23abe6ccc7e2462!2sLahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1596623734938!5m2!1sen!2s"
+                                width="100%" class="map" frameborder="0"
+                                style="border:0; margin-left: 22%; position: relative; height: 350px;"
+                                allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div><br>
+
+                        <textarea rows="4" cols="32" class="formplaceholders mb-4 textarea" required
+                            style=" border:none; border-bottom: 1px solid #1890ff; padding: 5px 10px; resize: none; outline: none; background: none; "
+                            placeholder="Enter your address.."></textarea><br>
+                        <div>
+
+                            <input onclick="send()" type="submit" value="Send" id="btnsend"
+                                class="btnsend btn-dark mb-3"
+                                style=" transition: 0.5s;text-transform: uppercase; text-decoration: none;">
+                        </div><br>
+                    </form>
+
+                </div>
+
+                <div class="col-md-4"
+                    style="background-color: rgb(209, 202, 202); justify-content: center; max-height: auto;">
+                    <br>
+                    <h3 style="color: white; background-color: dimgrey"><i class="fa fa-phone" aria-hidden="true"
+                            style="margin-left: 2%;"></i> Get in Touch </h3>
+                    <p class="text-center mt-4" style="color: black; font-size: 1.6vw; "><i class="fas fa-mobile-alt"
+                            aria-hidden="true"></i> Phone: +92-3200485506</p>
+                    <p class="text-center" style="color: black; font-size: 1.6vw; "><i class="far fa-envelope"
+                            aria-hidden="true"></i> Email: abc@gmail.com </p>
+                    <p class="text-center" style="color: black; font-size: 1.6vw; "><i class="fas fa-home"
+                            aria-hidden="true"></i> Address: Badami Bagh Lahore</p>
+                    <p class="text-center" style="color: black; font-size: 1.6vw; "><i class="fas fa-thumbs-up"
+                            aria-hidden="true"></i> Facebook: xyz@outlook.com</p>
+
+
+                    <h3 style="color: white; background-color: dimgrey;"><i class="fa fa-list" aria-hidden="true"
+                            style="margin-left: 2%"></i> Site Navigation</h3>
+                    <a href="#home">
+                        <h3 style="background-color: #dee9f9;color: black">Home</h3>
+                    </a>
+                    <a href="#about">
+                        <h3 style="background-color: #dee9f9;color: black">About Us</h3>
+                    </a>
+                    <a href="#gallery">
+                        <h3 style="background-color: #dee9f9;color: black">Portfolio</h3>
+                    </a>
+                    <a href="#contact">
+                        <h3 style="background-color: #dee9f9;color: black">Contact</h3>
+                    </a>
+
+
+
+                    <h3 class="mt-3 " style="color: white; background-color: dimgrey;"><i class="fas fa-signal "></i>
+                        Network Connect</h3>
+                        <div style="box-sizing: border-box; letter-spacing: 25px; justify-content: right;">
+                            <h3 style="display: flex; flex-direction: row; justify-content:center; ">
+                                <a href="https://mail.google.com/mail/u/0/#inbox/15eae9fcb224222e"><i class="fa fa-envelope"
+                                        style="color: red; height: 30px; width: 100% ; "
+                                        aria-hidden="true"></i></a>
+    
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"
+                                        style="color: #4267B2; height: 30px; width: 100% ;" aria-hidden="true"></i></a>
+    
+                                <a href="https://www.youtube.com/"><i class="fab fa-youtube"
+                                        style="color: red; height: 50px; width: 100%;"
+                                        aria-hidden="true"></i></a>
+    
+    
+                                <a href="https://twitter.com/"><i class="fab fa-twitter-square"
+                                        style="color: deepskyblue; height: 30px; width: 100x;"
+                                        aria-hidden="true"></i></a>
+    
+                                <a href="https://twitter.com/"><i class="fab fa-whatsapp-square"
+                                        style="color: green; height: 30px; width: 100%;"
+                                        aria-hidden="true"></i></a>
+                            </h3>
+
+                        </div>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="row"
+        style="background-color: #2e333a; text-align: center; justify-content: center; display: inline-flexbox;">
+        <div class="col-md-3 ml-4" style="text-align: center" width="100%">
+            <h2 style="color: azure">About Us</h2>
+            <a href="#home">
+                <h6 class="mt-3" style="color: white">Home Page</h6>
+            </a>
+            <a href="#menu">
+                <h6 style="color: azure">Menu</h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure">About Us</h6>
+            </a>
+            <a href="#contacl">
+                <h6 style="color: azure">Contact Us</h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure">Our Company</h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure">FeedBack</h6>
+            </a>
+        </div>
+        <div class="col-md-3 ml-4" style="text-align: center">
+            <h2 style="color: azure" width="100%">Categories</h2>
+            <a href="#gallery">
+                <h6 class="mt-3" style="color: azure">Web Portfolios </h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure">Franchise</h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure">Locations</h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure; "> Design Freelancers</h6>
+            </a>
+            <a href="#about">
+                <h6 style="color: azure; "> Design Companies</h6>
+            </a>
+            <a href="#home">
+                <h6 style="color: azure; "> Web Developement</h6>
+            </a>
+
+        </div>
+
+        <div class="col-md-5 ml-4 pixgallery" style="align-items: center; text-align: center;">
+            <h2 style="color: azure" width="100%">From the Gallery</h2>
+            <div class="pb-3 mt-4" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                <img src="food3.jpg" style=" height:55px; width:17%;" />
+                <img src="food4.jpg" style=" height:55px; width:17%;" />
+                <img src="food5.jpg" style=" height:55px; width:17%; " />
+                <img src="food6.jpg" style=" height:55px; width:17%;" />
+                <img src="update1.jpg" style=" height:55px; width:17%;" />
+            </div>
+
+            <div class="mb-4" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                <img src="update2.jpg" style=" height:55px; width:17%;" />
+                <img src="update3.jpg" style=" height:55px; width:17%;" />
+                <img src="slider1.jpg" style=" height:55px; width:17%;" />
+                <img src="slider4.jpg" style=" height:55px; width:17%;" />
+                <img src="slider3.jpg" style=" height:55px; width:17%;" />
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
